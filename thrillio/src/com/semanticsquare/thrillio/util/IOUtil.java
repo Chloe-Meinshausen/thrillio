@@ -1,11 +1,14 @@
 package com.semanticsquare.thrillio.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
 public class IOUtil {
@@ -21,7 +24,7 @@ public class IOUtil {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -50,7 +53,18 @@ public class IOUtil {
 	}
 
 	public static void write(String webpage, long id) {
-		// TODO Auto-generated method stub
+		try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/home/cyrill/git/thrillio/" + String.valueOf(id)+ ".html"), "UTF-8"))) {
+			writer.write(webpage);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 	}
 }
